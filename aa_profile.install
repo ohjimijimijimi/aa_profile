@@ -30,10 +30,185 @@ function aa_profile_install() {
   variable_set('node_admin_theme', '1');
 
   // Enable the theme
+  $default_theme = 'aa_theme';
   db_update('system')
   ->fields(array('status' => 1))
   ->condition('type', 'theme')
-  ->condition('name', 'aa_theme')
+  ->condition('name', $default_theme)
   ->execute();
-  variable_get('theme_default', 'aa_theme');  
+  variable_set('theme_default', $default_theme);
+  // set blocks to default theme
+  $blocks = array(
+    array(
+      'module' => 'system',
+      'delta' => 'main',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'content',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'views',
+      'delta' => 'social-block',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -19,
+      'region' => 'footer',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'menu',
+      'delta' => 'menu-footer',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -18,
+      'region' => 'footer',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'system',
+      'delta' => 'help',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => 5,
+      'region' => 'help',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'views',
+      'delta' => 'preview-block',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -18,
+      'region' => 'highlighted',
+      'pages' => '<front>',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'system',
+      'delta' => 'main-menu',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -6,
+      'region' => 'navigation',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'views',
+      'delta' => 'projects-block_1',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -18,
+      'region' => 'sidebar_first',
+      'pages' => '',
+      'cache' => -1,
+    ),
+  );
+  
+  $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
+  foreach ($blocks as $block) {
+    $query->values($block);
+  }
+  $query->execute();
+  
+  
+  // set the site frontpage to upcoming view.
+  variable_set('site_frontpage', 'upcoming');
+}
+
+function aa_profile_update_7000(&$sandbox) {
+  // fix the variable_get/set mispelling in hook_install
+  $default_theme = 'aa_theme';
+  variable_set('theme_default', $default_theme);
+
+  // set blocks to default theme
+  $blocks = array(
+    array(
+      'module' => 'system',
+      'delta' => 'main',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'content',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'views',
+      'delta' => 'social-block',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -19,
+      'region' => 'footer',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'menu',
+      'delta' => 'menu-footer',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -18,
+      'region' => 'footer',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'system',
+      'delta' => 'help',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => 5,
+      'region' => 'help',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'views',
+      'delta' => 'preview-block',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -18,
+      'region' => 'highlighted',
+      'pages' => '<front>',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'system',
+      'delta' => 'main-menu',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -6,
+      'region' => 'navigation',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'views',
+      'delta' => 'projects-block_1',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -18,
+      'region' => 'sidebar_first',
+      'pages' => '',
+      'cache' => -1,
+    ),
+  );
+  
+  $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
+  foreach ($blocks as $block) {
+    $query->values($block);
+  }
+  $query->execute();
+  
+  
+
+  // set the site frontpage to upcoming view.
+  variable_set('site_frontpage', 'upcoming');
 }

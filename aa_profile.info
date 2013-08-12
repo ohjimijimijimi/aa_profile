@@ -61,5 +61,6 @@ dependencies[] = addressfield_map_formatter
 dependencies[] = menu_attr_color
 dependencies[] = aa_project
 dependencies[] = aa_rules_menu
+dependencies[] = aa_menu_footer
 dependencies[] = aa_social
 dependencies[] = aa_wysiwyg
