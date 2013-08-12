@@ -122,6 +122,9 @@ function aa_profile_install() {
   variable_set('site_frontpage', 'upcoming');
 }
 
+/**
+ * Fix default theme and configure blocks.
+ */
 function aa_profile_update_7000(&$sandbox) {
   // fix the variable_get/set mispelling in hook_install
   $default_theme = 'aa_theme';
