@@ -60,6 +60,7 @@ dependencies[] = metatag
 dependencies[] = strongarm
 
 dependencies[] = addressfield_map_formatter
+dependencies[] = aa_breakpoints
 dependencies[] = aa_project
 dependencies[] = aa_rules_menu
 dependencies[] = aa_menu_footer
