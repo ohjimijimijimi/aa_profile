@@ -33,6 +33,7 @@ dependencies[] = features
 dependencies[] = uuid
 dependencies[] = uuid_features
 dependencies[] = nodequeue
+dependencies[] = fe_nodequeue
 dependencies[] = devel
 dependencies[] = module_filter
 dependencies[] = link
@@ -56,6 +57,7 @@ dependencies[] = mollom
 dependencies[] = googleanalytics
 dependencies[] = xmlsitemap
 dependencies[] = metatag
+dependencies[] = strongarm
 
 dependencies[] = addressfield_map_formatter
 dependencies[] = aa_project
